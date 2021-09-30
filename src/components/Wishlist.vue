@@ -1,23 +1,21 @@
 <template>
   <div class="wishlist">
-    <h2>Wishlist</h2>
+    <h2 class="pa-2">Wishlist</h2>
     <p v-if="wishlist.length === 0">There are no products on the wishlist</p>
 
     <v-list>
       <v-list-item v-for="item in wishlist" :key="item.productName">
         <v-list-item-content>
-          <v-list-item-title>
+          <v-list-item-title class="pr-3">
             {{ item.productName }}
             <v-badge
               ><span slot="badge">{{ item.quantity }}</span></v-badge
             >
           </v-list-item-title>
           <v-list-item-subtitle>
-            <v-btn small type="button" @click="removeItem(item)">X</v-btn>
-            <v-btn small type="button" @click="changeQuantity(item)">+</v-btn>
-            <v-btn small type="button" @click="changeQuantity(item, 'decrease')"
-              >-</v-btn
-            >
+            <v-btn small icon type="button" color="primary" @click="changeQuantity(item)"><v-icon>mdi-plus-box</v-icon></v-btn>
+            <v-btn small icon type="button" color="primary" @click="changeQuantity(item, 'decrease')"><v-icon>mdi-minus-box</v-icon></v-btn>
+            <v-btn small icon type="button" color="error" @click="removeItem(item)"><v-icon>mdi-trash-can-outline</v-icon></v-btn>
           </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>

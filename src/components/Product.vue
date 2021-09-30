@@ -1,7 +1,9 @@
 <template>
-  <div class="product">
-    {{ product.productName }}
-    <v-btn small type="button" @click="addProductToWishlist()">Add</v-btn>
+  <div class="product v-list-item elevation-1">
+    <v-btn small icon type="button" @click="addProductToWishlist()"><v-icon>mdi-plus-box</v-icon></v-btn>
+    <div class="v-list-item__content px-4">
+      {{ product.productName }}
+    </div>
   </div>
 </template>
 
@@ -28,11 +30,13 @@ export default {
   },
   methods: {
     addProductToWishlist() {
-        if(!this.productAlreadyInWishlist) {
-            this.$store.commit("addToWishlist", this.product);
-        } else {
-            alert("Product is already added to the wishlist");
-        }
+      if (!this.productAlreadyInWishlist) {
+        this.$store.commit("addToWishlist", this.product);
+      } else {
+        let item = this.wishlist.find(wishlistItem =>  wishlistItem.productName === this.product.productName);
+        item.quantity = item.quantity + 1;
+        this.$store.commit("updateWishlistItem", item);
+      }
     },
   },
 };

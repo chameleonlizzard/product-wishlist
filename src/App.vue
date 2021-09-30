@@ -4,11 +4,10 @@
       <div class="d-flex align-center"></div>
 
       <v-spacer></v-spacer>
+
       <v-btn icon @click="drawer = true">
         <v-icon>mdi-star</v-icon>
-        <v-badge>
-          <span :slot="badge">{{totalQuantity}}</span>
-        </v-badge>
+        <span>{{ totalQuantity }}</span>
       </v-btn>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" absolute right temporary>
@@ -38,9 +37,9 @@ export default {
     }),
     totalQuantity() {
       return this.wishlist.reduce((total, next) => {
-        return total + next.quantity
-      }, 0)
-    }
+        return total + next.quantity;
+      }, 0);
+    },
   },
   data: () => ({
     drawer: false,
